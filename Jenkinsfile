@@ -48,7 +48,7 @@ pipeline{
             steps{
                 script{
                      withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh "docker build -f ./Dockerfile --build-arg TMDB_V3_API_KEY=c652867d91c2677ec27f25c0e0806bbd -t netflix ."
+                        sh "docker build --build-arg TMDB_V3_API_KEY=c652867d91c2677ec27f25c0e0806bbd -t netflix ."
                         sh "echo $PASS | docker login -u $USER --password-stdin"
                         sh "docker tag netflix manideepm777/netflix:latest"
                         sh "docker push manideepm777/netflix:latest "
